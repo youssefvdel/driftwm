@@ -316,6 +316,7 @@ impl<K: Eq + Hash, V> ContextBindings<K, V> {
         let specific = match context {
             BindingContext::OnWindow => &self.on_window,
             BindingContext::OnCanvas => &self.on_canvas,
+            BindingContext::OnSection => &self.on_section,
             BindingContext::Anywhere => return self.anywhere.get(key),
         };
         specific.get(key).or_else(|| self.anywhere.get(key))
@@ -325,6 +326,7 @@ impl<K: Eq + Hash, V> ContextBindings<K, V> {
         match context {
             BindingContext::OnWindow => &mut self.on_window,
             BindingContext::OnCanvas => &mut self.on_canvas,
+            BindingContext::OnSection => &mut self.on_section,
             BindingContext::Anywhere => &mut self.anywhere,
         }
     }
